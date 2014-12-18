@@ -8,7 +8,7 @@
  * @copyright	2014 Worcester Polytechnic Institute
  * @link		https://github.com/WPI-RAIL/CarlDemoInterface
  * @since		CarlDemoInterface v 0.0.1
- * @version		0.0.2
+ * @version		0.0.3
  * @package		app.View.CarlDemoInterface
  */
 ?>
@@ -135,11 +135,13 @@ echo $this->Rms->keyboardTeleop($environment['Teleop'][0]['topic'], $environment
 </script>
 <?php
 // URDF
-echo $this->Rms->urdf(
-	$environment['Urdf'][0]['param'],
-	$environment['Urdf'][0]['Collada']['id'],
-	$environment['Urdf'][0]['Resource']['url']
-);
+foreach ($environment['Urdf'] as $urdf) {
+	echo $this->Rms->urdf(
+		$urdf['param'],
+		$urdf['Collada']['id'],
+		$urdf['Resource']['url']
+	);
+}
 
 // Interactive Markers
 echo $this->Rms->interactiveMarker(
